@@ -123,7 +123,7 @@ label auto \
   menu label ^Auto install CentOS Linux 7 \
   kernel vmlinuz \
   menu default \
-  append initrd=initrd.img inst.ks=cdrom:/dev/cdrom:/ks.cfg \
+  append initrd=initrd.img inst.ks=hd:LABEL=CentOS_7_x86_64:/ks.cfg \
   # end' $EXTRACT_ISO_FOLDER/isolinux/isolinux.cfg
 
 # Make new image
@@ -153,7 +153,7 @@ fi
 
 
 # mkisofs -o $SCRIPT_PATH/images/$NEW_IMAGE_NAME.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V "$NEW_IMAGE_NAME" -boot-load-size 4 -boot-info-table -R -J -v -T $EXTRACT_ISO_FOLDER
-genisoimage -o $SCRIPT_PATH/images/$NEW_IMAGE_NAME.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V "CentOS 7 x86_64" -boot-load-size 4 -boot-info-table -R -J -v -T $EXTRACT_ISO_FOLDER
+genisoimage -o $SCRIPT_PATH/images/$NEW_IMAGE_NAME.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V "CentOS_7_x86_64" -boot-load-size 4 -boot-info-table -R -J -v -T $EXTRACT_ISO_FOLDER
 
 # Post action
 # -------------------------------------------------------------------------------------------\
