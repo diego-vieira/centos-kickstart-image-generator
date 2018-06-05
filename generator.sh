@@ -12,7 +12,7 @@ CENTOS_RELEASE="7"
 MIRROR=" http://mirror.vorboss.net/centos/$CENTOS_RELEASE/isos/x86_64/"
 MOUNT_ISO_FOLDER="/mnt/iso"
 EXTRACT_ISO_FOLDER="/tmp/centos_custom"
-ISO_TYPE="dvd" # minimal, dvd, everything
+ISO_TYPE="minimal" # minimal, dvd, everything
 NEW_IMAGE_NAME="centos-7-custom-$ISO_TYPE"
 
 # Colors
