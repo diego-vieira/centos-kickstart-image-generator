@@ -13,7 +13,7 @@ MIRROR=" http://mirror.vorboss.net/centos/$CENTOS_RELEASE/isos/x86_64/"
 MOUNT_ISO_FOLDER="/mnt/iso"
 EXTRACT_ISO_FOLDER="/tmp/centos_custom"
 ISO_TYPE="minimal" # minimal, dvd, everything
-NEW_IMAGE_NAME="centos-7-custom-$ISO_TYPE"
+NEW_IMAGE_NAME="centos-7-custom"
 
 # Colors
 RED="\033[0;31m"
@@ -58,13 +58,13 @@ fi
 # Copy ISO
 copy-iso(){
   echo "Copy ISO to $1"
-  cp $SCRIPT_PATH/images/$NEW_IMAGE_NAME.iso $1
+  cp $SCRIPT_PATH/images/$NEW_IMAGE_NAME-$ISO_TYPE.iso $1
 }
 
 # Move ISO
 move-iso(){
   echo "Move ISO to $1"
-  mv $SCRIPT_PATH/images/$NEW_IMAGE_NAME.iso $1
+  mv $SCRIPT_PATH/images/$NEW_IMAGE_NAME-$ISO_TYPE.iso $1
 }
 
 # Function download with Wget
@@ -152,8 +152,8 @@ if [[ $OS = "debian" ]]; then
 fi
 
 
-# mkisofs -o $SCRIPT_PATH/images/$NEW_IMAGE_NAME.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V "$NEW_IMAGE_NAME" -boot-load-size 4 -boot-info-table -R -J -v -T $EXTRACT_ISO_FOLDER
-genisoimage -o $SCRIPT_PATH/images/$NEW_IMAGE_NAME.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V "CentOS_7_x86_64" -boot-load-size 4 -boot-info-table -R -J -v -T $EXTRACT_ISO_FOLDER
+# mkisofs -o $SCRIPT_PATH/images/$NEW_IMAGE_NAME-$ISO_TYPE.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V "$NEW_IMAGE_NAME-$ISO_TYPE" -boot-load-size 4 -boot-info-table -R -J -v -T $EXTRACT_ISO_FOLDER
+genisoimage -o $SCRIPT_PATH/images/$NEW_IMAGE_NAME-$ISO_TYPE.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V "CentOS_7_x86_64" -boot-load-size 4 -boot-info-table -R -J -v -T $EXTRACT_ISO_FOLDER
 
 # Post action
 # -------------------------------------------------------------------------------------------\
@@ -162,7 +162,7 @@ umount $MOUNT_ISO_FOLDER
 echo -e "${GREEN}Delete $EXTRACT_ISO_FOLDER${CLS}"
 rm -rf $EXTRACT_ISO_FOLDER
 
-echo -e "${RED}Done!${CLS} ${GREEN}New autoimage destination - $SCRIPT_PATH/images/$NEW_IMAGE_NAME.iso${CLS}"
+echo -e "${RED}Done!${CLS} ${GREEN}New autoimage destination - $SCRIPT_PATH/images/$NEW_IMAGE_NAME-$ISO_TYPE.iso${CLS}"
 
 # Params
 while test $# -gt 0
@@ -185,6 +185,13 @@ do
                 echo "Argument is empty"
               else
                 move-iso $2
+              fi
+            ;;
+        --type)
+              if [[ -z $2 ]]; then
+                echo "Argument is empty"
+              else
+                ISO_TYPE=$2
               fi
             ;;
         #--*) echo "bad option $1"
