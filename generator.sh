@@ -123,7 +123,7 @@ label auto \
   menu label ^Auto install CentOS Linux 7 \
   kernel vmlinuz \
   menu default \
-  append initrd=initrd.img inst.ks=hd:LABEL=CentOS\\x207\\x20x86_64:/ks.cfg \
+  append initrd=initrd.img inst.ks=cdrom:/dev/cdrom:/ks.cfg \
   # end' $EXTRACT_ISO_FOLDER/isolinux/isolinux.cfg
 
 # Make new image
