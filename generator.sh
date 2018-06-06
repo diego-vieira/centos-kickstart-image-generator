@@ -76,6 +76,21 @@ download_image()
   wget $MIRROR$DOWNLOAD_ISO -P $SCRIPT_PATH/images
 }
 
+# Params
+while test $# -gt 0
+do
+    case "$1" in
+        --type)
+              if [[ -z $2 ]]; then
+                echo "Argument is empty"
+              else
+                ISO_TYPE=$2
+              fi
+            ;;
+    esac
+    shift
+done
+
 # Let's Begin
 # -------------------------------------------------------------------------------------------\
 # Get iso name
@@ -186,13 +201,6 @@ do
                 echo "Argument is empty"
               else
                 move-iso $2
-              fi
-            ;;
-        --type)
-              if [[ -z $2 ]]; then
-                echo "Argument is empty"
-              else
-                ISO_TYPE=$2
               fi
             ;;
         #--*) echo "bad option $1"
