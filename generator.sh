@@ -33,6 +33,7 @@ OPTIONS:
     --help          This help
     --copy-iso      Copy generated ISO to your destination (for example: VirtualBox or KVM iso folder)
     --move-iso      Move generated ISO to your destination
+    --type          minimal, dvd, everything
 "
 
 # Determine OS
