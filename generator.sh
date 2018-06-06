@@ -80,6 +80,11 @@ download_image()
 while test $# -gt 0
 do
     case "$1" in
+        --help)
+              echo -e "$USAGE"
+              echo -e "$HELP"
+              exit
+            ;;
         --type)
               if [[ -z $2 ]]; then
                 echo "Argument is empty"
@@ -184,11 +189,6 @@ echo -e "${RED}Done!${CLS} ${GREEN}New autoimage destination - $SCRIPT_PATH/imag
 while test $# -gt 0
 do
     case "$1" in
-        --help)
-              echo -e "$USAGE"
-              echo -e "$HELP"
-              exit
-            ;;
         --copy-iso)
               if [[ -z $2 ]]; then
                 echo "Argument is empty"
