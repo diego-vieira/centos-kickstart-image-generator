@@ -11,7 +11,7 @@ ME=`basename "$0"`
 CENTOS_RELEASE="7"
 MIRROR=" http://mirror.vorboss.net/centos/$CENTOS_RELEASE/isos/x86_64/"
 MOUNT_ISO_FOLDER="/mnt/iso"
-EXTRACT_ISO_FOLDER="/tmp/centos_custom"
+EXTRACT_ISO_FOLDER="/tmp/centos-custom"
 ISO_TYPE="minimal" # minimal, dvd, everything
 NEW_IMAGE_NAME="centos-7-custom"
 
@@ -33,7 +33,7 @@ OPTIONS:
     --help          This help
     --copy-iso      Copy generated ISO to your destination (for example: VirtualBox or KVM iso folder)
     --move-iso      Move generated ISO to your destination
-    --type          minimal, dvd, everything
+    --type          minimal, dvd, everything, default: minimal
 "
 
 # Determine OS
